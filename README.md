@@ -17,7 +17,7 @@ npm install spcolor
 ```ts
 import { getColorSupport } from "spcolor";
 
-console.log(getColorSupport{});
+console.log(getColorSupport());
 ```
 
 ### Deno
@@ -25,7 +25,7 @@ console.log(getColorSupport{});
 ```ts
 import { getColorSupport } from "npm:spcolor@latest";
 
-console.log(getColorSupport{});
+console.log(getColorSupport());
 ```
 
 ## API
