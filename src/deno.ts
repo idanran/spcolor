@@ -23,16 +23,6 @@ declare namespace Deno {
   export function osRelease(): string
 }
 
-const CIs = [
-  "TRAVIS",
-  "CIRCLECI",
-  "GITHUB_ACTIONS",
-  "GITLAB_CI",
-  "BUILDKITE",
-  "DRONE",
-  "APPVEYOR",
-]
-
 export function getColorSupport(): ColorSupport {
   if (Deno.noColor) return colorSupport(ColorSupportLevel.none)
 
@@ -67,7 +57,18 @@ export function getColorSupport(): ColorSupport {
     return colorSupport(ColorSupportLevel.bit4)
   }
 
+  const CIs = [
+    "TRAVIS",
+    "CIRCLECI",
+    "GITLAB_CI",
+    "BUILDKITE",
+    "DRONE",
+    "APPVEYOR",
+  ]
   const ci = Deno.env.get("CI")
+  if(ci !== undefined && Deno.env.get('GITHUB_ACTIONS') !== undefined){
+    return colorSupport(ColorSupportLevel.bit24)
+  }
   if (ci !== undefined && (CIs.some((ci) => Deno.env.get(ci) !== undefined) || Deno.env.get('CI_NAME') === 'codeship')) {
     return colorSupport(ColorSupportLevel.bit4)
   }

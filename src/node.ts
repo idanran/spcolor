@@ -6,16 +6,6 @@ import { env, platform } from 'node:process'
 import os from 'node:os'
 import { ColorSupport, colorSupport, ColorSupportLevel } from './share'
 
-const CIs = [
-	"TRAVIS",
-	"CIRCLECI",
-	"GITHUB_ACTIONS",
-	"GITLAB_CI",
-	"BUILDKITE",
-	"DRONE",
-	"APPVEYOR",
-]
-
 export function getColorSupport(): ColorSupport {
 	const no_color = env.NO_COLOR
 	if (no_color !== undefined) {
@@ -53,7 +43,18 @@ export function getColorSupport(): ColorSupport {
 		return colorSupport(ColorSupportLevel.bit4)
 	}
 
+	const CIs = [
+		"TRAVIS",
+		"CIRCLECI",
+		"GITLAB_CI",
+		"BUILDKITE",
+		"DRONE",
+		"APPVEYOR",
+	]
 	const ci = env.CI
+	if (ci !== undefined && env.GITHUB_ACTIONS !== undefined) {
+		return colorSupport(ColorSupportLevel.bit24)
+	}
 	if (ci !== undefined && (CIs.some((ci) => env[ci] !== undefined) || env.CI_NAME === 'codeship')) {
 		return colorSupport(ColorSupportLevel.bit4)
 	}
