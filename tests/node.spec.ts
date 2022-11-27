@@ -98,18 +98,27 @@ test("TERM_PROGRAM", () => {
 })
 
 test("CI", () => {
-    env.CI = ""
-
     delete env.TERM
     delete env.COLORTERM
     delete env.TERM_PROGRAM
     delete env.TERM_PROGRAM_VERSION
 
+    env.CI = ""
+    env.GITHUB_ACTIONS = ''
+
+    assert.deepEqual(getColorSupport(), {
+        has24bit: true,
+        has8bit: true,
+        has4bit: true,
+        level: ColorSupportLevel.bit24
+    })
+
+    delete env.GITHUB_ACTIONS
+
     for (
         const ciEnv of [
             "TRAVIS",
             "CIRCLECI",
-            "GITHUB_ACTIONS",
             "GITLAB_CI",
             "BUILDKITE",
             "DRONE",
@@ -127,7 +136,6 @@ test("CI", () => {
 
         delete env[ciEnv]
     }
-
     env.CI_NAME = 'codeship'
 
     assert.deepEqual(getColorSupport(), {
