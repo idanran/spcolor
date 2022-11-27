@@ -20,6 +20,14 @@ import { getColorSupport } from "spcolor";
 console.log(getColorSupport{});
 ```
 
+### Deno
+
+```ts
+import { getColorSupport } from "npm:spcolor@latest";
+
+console.log(getColorSupport{});
+```
+
 ## API
 
 ### getColorSupport()
