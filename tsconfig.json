@@ -17,4 +17,8 @@
   "include": [
     "src",
   ],
+  "exclude": [
+    "src/deno.ts",
+    "src/browser.ts"
+  ]
 }
