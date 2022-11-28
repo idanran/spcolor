@@ -8,7 +8,7 @@
   "module": "lib/node.mjs",
   "exports": {
     ".": {
-      "deno": "./lib/deno.js",
+      "deno": "./lib/deno.mjs",
       "node": {
         "require": "./lib/node.cjs",
         "import": "./lib/node.mjs"
@@ -55,7 +55,7 @@
   "scripts": {
     "compile:node-cjs": "esbuild src/node.ts --outfile=lib/node.cjs --bundle --sourcemap --platform=node --target=es2019",
     "compile:node-esm": "esbuild src/node.ts --outfile=lib/node.mjs --bundle --sourcemap --platform=node --format=esm --target=esnext",
-    "compile:deno": "esbuild src/deno.ts --outfile=lib/deno.js --bundle --sourcemap --platform=neutral --target=esnext",
+    "compile:deno": "esbuild src/deno.ts --outfile=lib/deno.mjs --bundle --sourcemap --platform=neutral --target=esnext",
     "compile:browser": "esbuild src/browser.ts --outfile=lib/browser.js --bundle --sourcemap --platform=neutral --target=esnext",
     "build": "yarn compile:node-cjs && yarn compile:node-esm && yarn compile:deno && yarn compile:browser && yarn dtsc",
     "test": "mocha -r esbuild-register tests/*.spec.ts",
