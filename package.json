@@ -8,11 +8,11 @@
   "module": "lib/node.mjs",
   "exports": {
     ".": {
+      "deno": "./lib/deno.js",
       "node": {
         "require": "./lib/node.cjs",
         "import": "./lib/node.mjs"
       },
-      "deno": "./lib/deno.js",
       "browser": "./lib/browser.js"
     },
     "./package.json": "./package.json"
