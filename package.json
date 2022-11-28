@@ -1,7 +1,7 @@
 {
   "name": "spcolor",
   "description": "Detect whether a terminal supports color",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "sideEffects": false,
   "typings": "lib/index.d.ts",
   "main": "lib/node.cjs",
