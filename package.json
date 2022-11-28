@@ -1,7 +1,7 @@
 {
   "name": "spcolor",
   "description": "Detect whether a terminal supports color",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "sideEffects": false,
   "typings": "lib/index.d.ts",
   "main": "lib/node.cjs",
@@ -13,7 +13,7 @@
         "require": "./lib/node.cjs",
         "import": "./lib/node.mjs"
       },
-      "browser": "./lib/browser.js"
+      "browser": "./lib/browser.mjs"
     },
     "./package.json": "./package.json"
   },
@@ -56,7 +56,7 @@
     "compile:node-cjs": "esbuild src/node.ts --outfile=lib/node.cjs --bundle --sourcemap --platform=node --target=es2019",
     "compile:node-esm": "esbuild src/node.ts --outfile=lib/node.mjs --bundle --sourcemap --platform=node --format=esm --target=esnext",
     "compile:deno": "esbuild src/deno.ts --outfile=lib/deno.mjs --bundle --sourcemap --platform=neutral --target=esnext",
-    "compile:browser": "esbuild src/browser.ts --outfile=lib/browser.js --bundle --sourcemap --platform=neutral --target=esnext",
+    "compile:browser": "esbuild src/browser.ts --outfile=lib/browser.mjs --bundle --sourcemap --platform=neutral --target=esnext",
     "build": "yarn compile:node-cjs && yarn compile:node-esm && yarn compile:deno && yarn compile:browser && yarn dtsc",
     "test": "mocha -r esbuild-register tests/*.spec.ts",
     "test:text": "shx rm -rf coverage && c8 -r text yarn test",
